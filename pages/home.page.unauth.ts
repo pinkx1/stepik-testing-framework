@@ -1,27 +1,30 @@
-class HomePageUnauth {
-    constructor(page, isMobile) {
+import { Locator, Page } from '@playwright/test';
+
+export class HomePageUnauth {
+    private page: Page;
+    private loginButton: Locator;
+    private signUpButton: Locator;
+
+    constructor(page: Page) {
         this.page = page;
-        this.isMobile = isMobile;
-        this.loginButton = isMobile ? 'button.login-mobile' : 'button.login';
-        this.signUpButton = isMobile ? 'button.signup-mobile' : 'button.signup';
+        this.loginButton = page.getByText('Войти', { exact: true });
+        this.signUpButton = page.getByText('Регистрация', { exact: true });
     }
 
     async goto() {
-        await this.page.goto('https://example.com');
+        await this.page.goto('/');
     }
 
     async clickLogin() {
-        await this.page.click(this.loginButton);
+        await this.loginButton.click();
     }
 
     async clickSignUp() {
-        await this.page.click(this.signUpButton);
+        await this.signUpButton.click();
     }
 
     async verifyHomePage() {
-        await this.page.waitForSelector(this.loginButton);
-        await this.page.waitForSelector(this.signUpButton);
+        await this.loginButton.waitFor();
+        await this.signUpButton.waitFor();
     }
 }
-
-module.exports = { HomePageUnauth };
