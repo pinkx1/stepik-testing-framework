@@ -10,4 +10,8 @@ export class HomePageUnauth {
         this.loginButton = page.getByText('Войти', { exact: true });
         this.signUpButton = page.getByText('Регистрация', { exact: true });
     }
+    async goto() {
+        await this.page.goto('/');
+    }
 }
+
