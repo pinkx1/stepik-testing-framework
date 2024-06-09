@@ -2,15 +2,20 @@ import {Locator, Page} from '@playwright/test';
 
 export class RegistrationPopup {
     private page: Page;
-    private popup: Locator;
-    private nameInput: Locator;
-    private emailInput: Locator;
-    private passwordInput: Locator;
-    private submitButton: Locator;
-    private closeButton: Locator;
-    private policyCheckbox: Locator;
+    popup: Locator;
+    nameInput: Locator;
+    emailInput: Locator;
+    passwordInput: Locator;
+    submitButton: Locator;
+    closeButton: Locator;
+    policyCheckbox: Locator;
+    privacyPolicyLink: Locator;
     termsLink: Locator;
-    private privacyPolicyLink: Locator
+    vkButton: Locator;
+    googleButton: Locator
+    githubButton: Locator
+    openLoginPopupButton: Locator
+    remindPasswordButton: Locator
 
     constructor(page: Page) {
         this.page = page;
@@ -22,7 +27,12 @@ export class RegistrationPopup {
         this.closeButton = page.locator('.modal-dialog-top__close')
         this.policyCheckbox = page.locator('.auth-disclaimer__form .form-checkbox');
         this.termsLink = page.getByText('условиями использования');
-        this.privacyPolicyLink = page.getByText('политикой конфиденциальности')
+        this.privacyPolicyLink = page.getByText('политикой конфиденциальности');
+        this.vkButton = page.locator('button[title=\'Войти через VK\']');
+        this.googleButton = page.locator('button[title=\'Войти через Google\']');
+        this.githubButton = page.locator('button[title=\'Войти через GitHub\']');
+        this.openLoginPopupButton = page.locator('#ember1844');
+        this.remindPasswordButton = page.getByText('Напомнить пароль')
     }
 
     async fillName(name: string) {
