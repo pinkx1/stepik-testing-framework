@@ -15,7 +15,6 @@ export class RegistrationPopup {
     googleButton: Locator
     githubButton: Locator
     openLoginPopupButton: Locator
-    remindPasswordButton: Locator
 
     constructor(page: Page) {
         this.page = page;
@@ -32,9 +31,11 @@ export class RegistrationPopup {
         this.googleButton = page.locator('button[title=\'Войти через Google\']');
         this.githubButton = page.locator('button[title=\'Войти через GitHub\']');
         this.openLoginPopupButton = page.locator('#ember1844');
-        this.remindPasswordButton = page.getByText('Напомнить пароль')
     }
 
+    async goto() {
+        await this.page.goto('/catalog?auth=registration');
+    }
     async fillName(name: string) {
         await this.nameInput.fill(name);
     }
@@ -55,15 +56,10 @@ export class RegistrationPopup {
         await this.policyCheckbox.uncheck();
     }
 
-    async fillRegistrationForm(name: string, email: string, password: string) {
+    async fillAndSubmitRegistrationForm(name: string, email: string, password: string) {
         await this.fillName(name);
         await this.fillEmail(email);
-        await this.fillPassword(password);
-    }
-
-    async fillAndSubmitRegistrationForm(name: string, email: string, password: string) {
-        await this.fillRegistrationForm(name, email, password);
-        await this.checkPolicyCheckbox();
+        await this.fillPassword(password);        await this.checkPolicyCheckbox();
         await this.submitForm();
     }
 
@@ -73,9 +69,5 @@ export class RegistrationPopup {
 
     async closePopup() {
         await this.closeButton.click();
-    }
-
-    async verifyPopupIsVisible() {
-        await this.popup.waitFor();
     }
 }
