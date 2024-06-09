@@ -4,12 +4,13 @@ export class HomePageUnauth {
     private page: Page;
     emailField: Locator;
     passwordField: Locator;
-    remindPasswordButton: Locator
-    openRegPopupButton: Locator
+    remindPasswordButton: Locator;
+    openRegPopupButton: Locator;
     signInButton: Locator;
     vkButton: Locator;
-    googleButton: Locator
-    githubButton: Locator
+    googleButton: Locator;
+    githubButton: Locator;
+    closeButton: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -21,10 +22,10 @@ export class HomePageUnauth {
         this.vkButton = page.locator('button[title=\'Войти через VK\']');
         this.googleButton = page.locator('button[title=\'Войти через Google\']');
         this.githubButton = page.locator('button[title=\'Войти через GitHub\']');
+        this.closeButton = page.locator('.modal-dialog-top__close');
     }
 
     async goto() {
         await this.page.goto('/catalog?auth=login');
     }
-
 }
