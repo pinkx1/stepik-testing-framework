@@ -14,8 +14,8 @@ test.describe('Registration popup tests', () => {
 
     test('should open terms link in a new tab', { tag: '@smoke' }, async ({ page }) => {
         await homePage.goto();
-        await homePage.clickSignUp();
-        await registrationPopup.verifyPopupIsVisible();
+        await homePage.signUpButton.click();
+        await registrationPopup.popup.isVisible();
 
         const newPage = await waitForPopupAndClickLink(page, registrationPopup.termsLink);
         await expect(newPage).toHaveTitle('Пользовательское соглашение — Stepik');
