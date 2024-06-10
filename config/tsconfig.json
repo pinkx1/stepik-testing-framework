@@ -6,7 +6,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "dist"
+    "outDir": "../dist"
   },
-  "include": ["tests", "pages", "api", "utils", "config"]
+  "include": ["../tests", "../pages", "../api", "../utils", "../config"]
 }
