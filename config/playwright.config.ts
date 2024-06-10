@@ -9,7 +9,7 @@ export default defineConfig({
   reporter: 'html',
   use: {
     baseURL: 'https://stepik.org',
-    trace: 'on-first-retry',
+    trace: 'on-first-retry'
   },
   projects: [
     {

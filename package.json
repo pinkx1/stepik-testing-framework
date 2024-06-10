@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc --project ./config/tsconfig.json",
-    "test": "npx playwright test --config ./config/playwright.config.ts"
+    "test": "npx playwright test --config ./config/playwright.config.ts",
+    "test ui": "npx playwright test --config ./config/playwright.config.ts --ui"
+
   },
   "keywords": [],
   "author": "",

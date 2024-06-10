@@ -8,5 +8,5 @@
     "forceConsistentCasingInFileNames": true,
     "outDir": "../dist"
   },
-  "include": ["../tests", "../pages", "../api", "../utils", "../config"]
+  "include": ["../tests/ui", "../pages", "../api", "../utils", "../config"]
 }

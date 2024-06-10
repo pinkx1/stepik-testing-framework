@@ -56,10 +56,11 @@ export class RegistrationPopup {
         await this.policyCheckbox.uncheck();
     }
 
-    async fillAndSubmitRegistrationForm(name, email: string, password: string) {
+    async fillAndSubmitRegistrationForm(name: string, email: string, password: string) {
         await this.fillName(name);
         await this.fillEmail(email);
-        await this.fillPassword(password);        await this.checkPolicyCheckbox();
+        await this.fillPassword(password);
+        await this.checkPolicyCheckbox();
         await this.submitForm();
     }
 
