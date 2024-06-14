@@ -1,7 +1,8 @@
 import { Locator, Page } from '@playwright/test';
 
-export class HomePageUnauth {
+export class LoginPopup {
     private page: Page;
+    popup: Locator;
     emailField: Locator;
     passwordField: Locator;
     remindPasswordButton: Locator;
@@ -14,6 +15,7 @@ export class HomePageUnauth {
 
     constructor(page: Page) {
         this.page = page;
+        this.popup = page.locator('.modal-dialog-inner');
         this.emailField = page.getByPlaceholder('E-mail');
         this.passwordField = page.getByPlaceholder('Пароль');
         this.remindPasswordButton = page.getByText('Напомнить пароль');
@@ -27,5 +29,23 @@ export class HomePageUnauth {
 
     async goto() {
         await this.page.goto('/catalog?auth=login');
+    }
+
+    async fillEmailField(email: string) {
+        await this.emailField.fill(email);
+    }
+
+    async fillPasswordField(password: string) {
+        await this.passwordField.fill(password);
+    }
+
+    async submitForm() {
+        await this.signInButton.click();
+    }
+
+    async fillAndSubmitLoginForm(email: string, password: string) {
+        await this.fillEmailField(email);
+        await this.fillPasswordField(password);
+        await this.submitForm();
     }
 }

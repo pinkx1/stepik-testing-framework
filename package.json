@@ -5,8 +5,7 @@
   "scripts": {
     "build": "tsc --project ./config/tsconfig.json",
     "test": "npx playwright test --config ./config/playwright.config.ts",
-    "test ui": "npx playwright test --config ./config/playwright.config.ts --ui"
-
+    "test-ui": "npx playwright test --config ./config/playwright.config.ts --ui"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +14,10 @@
   "devDependencies": {
     "@playwright/test": "^1.44.1",
     "@types/node": "^20.14.2",
+    "dotenv": "^16.4.5",
     "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "ts-node": "^10.9.2"
   }
 }
