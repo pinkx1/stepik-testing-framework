@@ -1,7 +1,7 @@
 import { Locator, Page } from '@playwright/test';
 
 export class LoginPopup {
-    private page: Page;
+    page: Page;
     popup: Locator;
     emailField: Locator;
     passwordField: Locator;
@@ -21,9 +21,9 @@ export class LoginPopup {
         this.remindPasswordButton = page.getByText('Напомнить пароль');
         this.openRegPopupButton = page.locator('#ember1845');
         this.signInButton = page.locator('//button[@type=\'submit\']');
-        this.vkButton = page.locator('button[title=\'Войти через VK\']');
-        this.googleButton = page.locator('button[title=\'Войти через Google\']');
-        this.githubButton = page.locator('button[title=\'Войти через GitHub\']');
+        this.vkButton = page.getByTitle('Войти через VK');
+        this.googleButton = page.getByTitle('Войти через Google');
+        this.githubButton = page.getByTitle('Войти через GitHub');
         this.closeButton = page.locator('.modal-dialog-top__close');
     }
 

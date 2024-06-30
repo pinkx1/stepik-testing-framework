@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "CommonJS",
+    "sourceMap": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "./tests/ui",
+    "./pages",
+    "./api",
+    "./utils",
+    "./env.d.ts",
+    "playwright.config.ts"
+  ]
+}

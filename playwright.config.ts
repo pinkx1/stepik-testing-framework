@@ -11,35 +11,36 @@ export default defineConfig({
   reporter: 'html',
   use: {
     baseURL: 'https://stepik.org',
-    trace: 'on-first-retry'
+    trace: 'on-first-retry',
+    headless: false
   },
   projects: [
     {
       name: 'smoke-pc',
       grep: /@smoke/,
       use: { ...devices['Desktop Chrome'] },
-      testDir: "../tests/ui",
+      testDir: "./tests/ui",
       testMatch: /.*\.test\.ts/,
     },
     {
       name: 'smoke-mobile',
       grep: /@smoke/,
-      use: { ...devices['Pixel 5'], isMobile: true },
-      testDir: "../tests/ui",
+      use: { ...devices['Pixel 5'], isMobile: true},
+      testDir: "./tests/ui",
       testMatch: /.*\.test\.ts/,
     },
     {
       name: 'regression-pc',
       grep: /@regression/,
       use: { ...devices['Desktop Chrome'] },
-      testDir: "../tests/ui",
+      testDir: "./tests/ui",
       testMatch: /.*\.test\.ts/,
     },
     {
       name: 'regression-mobile',
       grep: /@regression/,
       use: { ...devices['Pixel 5'], isMobile: true },
-      testDir: "../tests/ui",
+      testDir: "./tests/ui",
       testMatch: /.*\.test\.ts/,
     },
   ],
