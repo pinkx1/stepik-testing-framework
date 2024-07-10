@@ -1,7 +1,7 @@
 import { Locator, Page } from '@playwright/test';
 
 export class HomePageUnauth {
-    private page: Page;
+    page: Page;
     loginButton: Locator;
     signUpButton: Locator;
 
