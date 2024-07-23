@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "test": "npx playwright test --config playwright.config.ts",
-    "test-ui": "npx playwright test --config playwright.config.ts --ui"
+    "test-ui": "npx playwright test --config playwright.config.ts --ui",
+    "generate-report": "allure generate allure-results -o allure-report --clean",
+    "open-report": "allure open allure-report"
   },
   "keywords": [],
   "author": "",
