@@ -9,14 +9,12 @@ export class ApiHelper {
         if (!csrfToken) {
             throw new Error('CSRF token not found');
         }
-
         return csrfToken;
     }
 
     static async createUser(email: string, password: string, firstName: string, lastName: string) {
         const requestContext = await request.newContext();
         const csrfToken = await ApiHelper.getCsrfToken(requestContext);
-
         const response = await requestContext.post('https://stepik.org/api/users', {
             headers: {
                 'Content-Type': 'application/json',
@@ -42,13 +40,8 @@ export class ApiHelper {
 
     static async deleteUser(pageAPIContext: APIRequestContext, password: string, csrfMiddlewareToken: string | null) {
         const csrfToken = await ApiHelper.getCsrfToken(pageAPIContext);
-
         const cookies = await pageAPIContext.storageState();
         const sessionIdFromCookie = cookies.cookies.find(cookie => cookie.name === 'sessionid')?.value;
-
-        // console.log('from requestcontext ' + csrfToken);
-        // console.log('from requestcontext ' + csrfMiddlewareToken);
-
         const response = await pageAPIContext.post('https://stepik.org/users/delete-account/', {
             headers: {
                 'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
@@ -73,5 +66,4 @@ export class ApiHelper {
 
         console.log(response.status());
     }
-
 }
