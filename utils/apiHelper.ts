@@ -40,36 +40,38 @@ export class ApiHelper {
         return data;
     }
 
+    static async deleteUser(pageAPIContext: APIRequestContext, password: string, csrfMiddlewareToken: string | null) {
+        const csrfToken = await ApiHelper.getCsrfToken(pageAPIContext);
 
-    static async deleteUser(email: string, password: string) {
-        const requestContext = await request.newContext();
-        const csrfToken = await ApiHelper.getCsrfToken(requestContext);
-        const cookies = await requestContext.storageState();
-        const sessionidCookie= cookies.cookies.find(cookie => cookie.name === 'sessionid')?.value;
+        const cookies = await pageAPIContext.storageState();
+        const sessionIdFromCookie = cookies.cookies.find(cookie => cookie.name === 'sessionid')?.value;
 
-        const response = await requestContext.post('https://stepik.org/users/delete-account/', {
+        // console.log('from requestcontext ' + csrfToken);
+        // console.log('from requestcontext ' + csrfMiddlewareToken);
+
+        const response = await pageAPIContext.post('https://stepik.org/users/delete-account/', {
             headers: {
                 'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
                 'accept-language': 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7',
                 'cache-control': 'max-age=0',
                 'content-type': 'application/x-www-form-urlencoded',
-                'cookie': `csrftoken=${csrfToken}; sessionid=${sessionidCookie}`,
+                'cookie': `csrftoken=${csrfToken}; sessionid=${sessionIdFromCookie};`,
                 'origin': 'https://stepik.org',
-                'priority': 'u=0, i',
                 'referer': 'https://stepik.org/users/delete-account/',
-                'sec-ch-ua': '"Not/A)Brand";v="8", "Chromium";v="126", "Google Chrome";v="126"',
+                'sec-ch-ua': '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
                 'sec-ch-ua-mobile': '?0',
-                'sec-ch-ua-platform': '"Windows"',
+                'sec-ch-ua-platform': '"macOS"',
                 'sec-fetch-dest': 'document',
                 'sec-fetch-mode': 'navigate',
                 'sec-fetch-site': 'same-origin',
                 'sec-fetch-user': '?1',
                 'upgrade-insecure-requests': '1',
-                'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
+                'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
             },
-            data: `csrfmiddlewaretoken=${csrfToken}&password=${password}`,
+            data: `csrfmiddlewaretoken=${csrfMiddlewareToken}&password=${password}`,
         });
-        // console.log(response)
 
+        console.log(response.status());
     }
+
 }
